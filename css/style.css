@@ -9,6 +9,7 @@
   --mainColor: #00cccc;
   --bg-color: #fff;
 }
+
 /* font import */
 @font-face {
   src: url(../fonts/FiraSans-Black.ttf);
@@ -50,6 +51,7 @@
 .toggle-settings i {
   width: 30px;
   padding: 8px 0;
+  color: #000000;
 }
 .tool-bar .settings-container {
   padding: 20px;
@@ -112,6 +114,20 @@
   background-color: var(--mainColor);
   color: #fff;
 }
+.option-box i.mode {
+  color: var(--mainColor);
+  background-color: #333;
+  font-size: 25px;
+  border-radius: 50%;
+  width: 50px;
+  padding: 10px;
+  transition: all 0.5s;
+  margin: 5px 0;
+  border: 3px solid var(--mainColor);
+}
+.option-box i.mode.bg {
+  background-color: #f3f3f3;
+}
 /* tool bar */
 /*  */
 html {
@@ -120,6 +136,10 @@ html {
 body {
   font-family: main-font;
   font-weight: 800;
+}
+.dark {
+  background-color: #000000;
+  color: #fff;
 }
 .container {
   padding-left: 15px;
@@ -274,6 +294,7 @@ p {
   position: relative;
   text-transform: uppercase;
   font-weight: bold;
+  cursor: pointer;
   font-size: 20px;
 }
 .New_btn:hover {
@@ -350,6 +371,8 @@ p {
 .card img {
   width: 100%;
   transition: transform 0.1s linear;
+  padding: 3px;
+  background-color: #ebeceb;
 }
 .card img:hover {
   border: 5px solid var(--mainColor);
@@ -410,21 +433,58 @@ h3 {
 }
 /* flag */
 /* egypt */
+.egypt {
+  margin-bottom: 50px;
+  position: relative;
+  transition: 0.5s;
+}
+.egypt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  transition: 0.5s;
+}
+.egypt::after {
+  content: "This Is Egypt";
+  background-color: var(--mainColor);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  position: absolute;
+  font-family: head-font;
+  letter-spacing: 5px;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  transition: 0.5s;
+}
+.egypt:hover::after,
+.egypt:hover::before {
+  opacity: 0;
+}
+
 .egypt .egypt_P {
-  padding-top: 80px;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
 }
 .egypt_P img {
-  width: 300px;
+  width: calc(100% / 7);
 }
 /* egypt */
 /* contact and footer */
 .contact {
   background-color: #eee;
   font-family: fir-font;
+  color: #000000;
 }
 .inf {
   padding: 20px;
@@ -508,6 +568,21 @@ footer span {
 /* test */
 
 /* madia queary */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
 @media (width: 1024px) {
   .main {
     padding: 10px;
@@ -516,14 +591,6 @@ footer span {
 @media (max-width: 1200px) {
   .main {
     width: 100%;
-  }
-}
-@media (max-width: 500px) {
-  .main_img img {
-    width: 20%;
-  }
-  .main_img img {
-    width: 24%;
   }
 }
 @media (max-width: 768px) {
@@ -554,20 +621,5 @@ footer span {
   }
   form {
     display: none;
-  }
-}
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
   }
 }

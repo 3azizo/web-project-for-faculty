@@ -80,38 +80,64 @@ function randomBg() {
   }
 }
 randomBg();
+
+//change mode
+document.querySelector(".mode").addEventListener("click", (e) => {
+  e.target.classList.toggle("fa-lightbulb");
+  e.target.classList.toggle("fa-moon");
+  e.target.classList.toggle("bg");
+  document.body.classList.toggle("dark");
+});
 // tool bar
+
+//gallery
+let img_modal = document.querySelector(" .modal");
+const overlay = document.querySelector(".overlay");
+// CLOSE
+const closeModal = function () {
+  overlay.classList.add("hidden");
+  img_modal.classList.add("hidden");
+};
+
+const openModal = function () {
+  overlay.classList.remove("hidden");
+  img_modal.classList.remove("hidden");
+};
+
+let eventEx = true; //to execution event one time
 click_My.addEventListener("click", function () {
-  let imgarr = [];
-  let img_modal = document.querySelector(".modal");
-  const overlay = document.querySelector(".overlay");
-  const openModal = function () {
-    overlay.classList.remove("hidden");
-    img_modal.classList.remove("hidden");
-  };
-  for (let i = 0; i < 18; i++) {
-    let img = `img/random/random${i + 1}.jpg`;
-    let newCard = document.createElement("div");
-    newCard.classList.add("card");
-    newCard.classList.add(`cr${i + 1}`);
-    newCard.innerHTML = `<img src="${img}">`;
-    imgarr.push(newCard.innerHTML);
-    portfolio_cont.appendChild(newCard);
+  if (eventEx) {
+    let imgarr = [];
+    // for render img
+    for (let i = 0; i < 18; i++) {
+      let img = `img/random/random${i + 1}.jpg`;
+      let newCard = document.createElement("div");
+      newCard.classList.add("card");
+      // newCard.classList.add(`cr${i + 1}`);
+      newCard.innerHTML = `<img src="${img}">`;
+      imgarr.push(newCard.innerHTML);
+      portfolio_cont.appendChild(newCard);
+    }
+    let img_cr = document.querySelectorAll(".card");
+    //for overlay and modal
+    for (let j = 0; j < img_cr.length; j++) {
+      img_cr[j].addEventListener("click", function () {
+        openModal();
+        img_modal.innerHTML = imgarr[j];
+        window.document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            closeModal();
+          }
+        });
+      });
+    }
+    // to close
+    overlay.addEventListener("click", closeModal);
+    eventEx = false;
+  } else {
+    this.style.cssText = "cursor: not-allowed;";
+    alert("your aready see the content ");
   }
-  let img_cr = document.querySelectorAll(".card");
-  for (let j = 0; j < img_cr.length; j++) {
-    img_cr[j].addEventListener("click", function () {
-      openModal();
-      console.log(imgarr);
-      img_modal.innerHTML = imgarr[j];
-    });
-  }
-  // CLOSE
-  const closeModal = function () {
-    overlay.classList.add("hidden");
-    img_modal.classList.add("hidden");
-  };
-  overlay.addEventListener("click", closeModal);
   //test
 });
 //flag
