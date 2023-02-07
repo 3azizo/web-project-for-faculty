@@ -1,0 +1,102 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  user-select: text;
+}
+@font-face {
+  src: url(../fonts/FiraSans-Black.ttf);
+  font-family: fir-font;
+}
+body {
+  background-color: #333;
+  color: white;
+}
+.about {
+  font-family: fir-font;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.about .main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.image {
+  width: fit-content;
+  text-align: center;
+  position: relative;
+}
+.image::after {
+  content: "";
+  position: absolute;
+  background-color: rgba(0, 81, 174, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.about img {
+  width: 400px;
+}
+@media (min-width: 800px) {
+  .image::after {
+    height: 100vh;
+    top: -100%;
+  }
+}
+a {
+  display: inline-block;
+  margin: 30px 0;
+  text-decoration: none;
+  color: #0051ae;
+  border: 2px solid #0051ae;
+  padding: 10px 20px;
+  transition: 0.5s;
+}
+a:hover {
+  transform: scale(1.1);
+  color: #fff;
+  background-color: #0051ae;
+}
+
+.about_txt {
+  max-width: 50%;
+}
+h1 {
+  color: #0051ae;
+  font-size: 50px;
+  padding: 5px;
+}
+h5 {
+  font-size: 30px;
+  padding: 5px;
+}
+span {
+  color: #4b9fff;
+}
+p {
+  font-size: 20px;
+  padding: 5px;
+  line-height: 2;
+}
+@media (max-width: 800px) {
+  .about img {
+    width: 50%;
+  }
+  .main {
+    flex-wrap: wrap;
+  }
+  h1 {
+    font-size: 30px;
+  }
+  h5 {
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 12px;
+  }
+}
