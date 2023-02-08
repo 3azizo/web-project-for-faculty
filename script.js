@@ -4,6 +4,13 @@ let main_h = document.getElementById("main_h");
 let main_p = document.getElementById("main_p");
 let click_My = document.querySelector(".clickMy");
 let portfolio_cont = document.querySelector(".portfolio-cont");
+//// for remove all active class
+function handelActive(eles, e) {
+  eles.forEach((ele) => {
+    ele.classList.remove("active");
+  });
+  e.target.classList.add("active");
+}
 //
 // tool bar
 let toolBar = document.querySelector(".tool-bar");
@@ -14,12 +21,7 @@ document.querySelector(".toggle-settings i").onclick = function () {
 };
 //option color switch colors
 const colorLi = document.querySelectorAll(".colors-list li");
-// for remove all active class
-function removeLiActive() {
-  colorLi.forEach((li) => {
-    li.classList.remove("active");
-  });
-}
+
 // get color from local Storage
 if (localStorage.getItem("mainColor")) {
   let mainColor = localStorage.getItem("mainColor");
@@ -34,9 +36,7 @@ if (localStorage.getItem("mainColor")) {
 // add Event to li
 colorLi.forEach((li) => {
   li.addEventListener("click", (e) => {
-    removeLiActive();
-    e.target.classList.add("active");
-    console.log(e.target.dataset.color);
+    handelActive(colorLi, e);
     document.documentElement.style.setProperty(
       "--mainColor",
       e.target.dataset.color
@@ -52,10 +52,7 @@ spanBG.forEach((span) => {
   // span.classList.remove("active");
   span.onclick = function (e) {
     //remove active
-    spanBG.forEach((span) => {
-      span.classList.remove("active");
-    });
-    e.target.classList.add("active");
+    handelActive(spanBG, e);
     //
     if (span.dataset.bg == "yes") {
       backgroundOption = true;
@@ -69,7 +66,6 @@ spanBG.forEach((span) => {
     }
   };
 });
-
 function randomBg() {
   if (backgroundOption == true) {
     clearKey = setInterval(function () {
@@ -80,6 +76,16 @@ function randomBg() {
   }
 }
 randomBg();
+//side bar option
+let spanSD = document.querySelectorAll(".sideCont span");
+spanSD.forEach((span) => {
+  // span.classList.remove("active");
+  span.onclick = function (e) {
+    //remove active
+    handelActive(spanSD, e);
+    sideBarContainer.classList.toggle("hidden");
+  };
+});
 
 //change mode
 document.querySelector(".mode").addEventListener("click", (e) => {
@@ -142,15 +148,27 @@ click_My.addEventListener("click", function () {
 });
 //flag
 const panels = document.querySelectorAll(".panel");
-panels.forEach((panels) => {
-  panels.addEventListener("click", () => {
-    removactive();
-    panels.classList.add("active");
+panels.forEach((panel) => {
+  panel.addEventListener("click", (e) => {
+    handelActive(panels, e);
   });
 });
-function removactive() {
-  panels.forEach((panels) => {
-    panels.classList.remove("active");
-  });
-}
 //flag
+//side bar
+let sideBarContainer = document.querySelector(".side-bar");
+let allSection = document.querySelectorAll("body > .section");
+allSection.forEach((ele) => {
+  let sideBox = document.createElement("div");
+  sideBox.classList = "side-box";
+  let spanInSide = document.createElement("span");
+  spanInSide.textContent = `${ele.id}`;
+  sideBox.appendChild(spanInSide);
+  sideBarContainer.appendChild(sideBox);
+  sideBox.addEventListener("click", (e) => {
+    handelActive(document.querySelectorAll(".side-box"), e);
+    document.querySelector(`#${ele.id}`).scrollIntoView({
+      behavior: "smooth",
+    });
+  });
+});
+//side bar

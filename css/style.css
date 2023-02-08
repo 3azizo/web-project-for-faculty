@@ -23,6 +23,55 @@
   font-family: head-font;
   src: url(../fonts/angled-angled-italic-400.ttf);
 }
+/* side bar */
+.side-bar {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+}
+.side-bar.hidden {
+  display: none;
+}
+.side-bar .side-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--mainColor);
+  position: relative;
+  margin-bottom: 20px;
+}
+.side-bar .side-box.active {
+  background-color: var(--mainColor);
+}
+
+.side-bar .side-box span {
+  background-color: var(--mainColor);
+  position: absolute;
+  color: #fff;
+  right: 40px;
+  padding: 5px;
+  min-width: 100px;
+  text-align: center;
+  top: -50%;
+  text-transform: capitalize;
+
+  letter-spacing: 1px;
+  display: none;
+}
+.side-bar .side-box:hover span {
+  display: block;
+}
+.side-bar .side-box span::after {
+  content: "";
+  position: absolute;
+  border: 10px solid;
+  border-color: transparent transparent transparent var(--mainColor);
+  top: 50%;
+  transform: translateY(-50%);
+  right: -20px;
+}
+/* side bar */
 /* tool bar */
 .tool-bar {
   position: fixed;
@@ -35,6 +84,7 @@
   font-family: fir-font;
   letter-spacing: 1px;
   transition: 0.5s;
+  border: 3px solid #ddd;
 }
 .tool-bar.open {
   left: 0;
@@ -110,7 +160,7 @@
   width: 50px;
   cursor: pointer;
 }
-.randomBack span.active {
+.option-box span.active {
   background-color: var(--mainColor);
   color: #fff;
 }
