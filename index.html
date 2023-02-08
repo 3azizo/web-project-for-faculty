@@ -13,6 +13,7 @@
     <title>3azizo wedsite</title>
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://unpkg.com/headroom.js"></script>
   </head>
   <body>
     <div class="tool-bar">
@@ -50,7 +51,7 @@
         </div>
       </div>
     </div>
-    <header class="headroom headroom--pinned" id="header">
+    <header class="header" id="header">
       <div class="container">
         <div class="links">
           <ul>
@@ -175,5 +176,10 @@
     <footer>&copy; <span>3azizo</span> All Right Reserved</footer>
     <script src="jquery-3.6.1.min.js"></script>
     <script src="script.js"></script>
+    <script>
+      let header = document.getElementById("header");
+      let headroom = new Headroom(header);
+      headroom.init();
+    </script>
   </body>
 </html>

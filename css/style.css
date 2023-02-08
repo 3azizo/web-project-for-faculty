@@ -9,6 +9,17 @@
   --mainColor: #00cccc;
   --bg-color: #fff;
 }
+/* headroom */
+.headroom {
+  will-change: transform;
+  transition: transform 200ms linear;
+}
+.headroom--pinned {
+  transform: translateY(0%);
+}
+.headroom--unpinned {
+  transform: translateY(-100%);
+}
 /* font import */
 @font-face {
   src: url(../fonts/FiraSans-Black.ttf);
@@ -201,6 +212,7 @@ header {
   z-index: 10;
   width: 100%;
   background-color: #000000;
+  position: fixed;
 }
 header .container {
   display: flex;
