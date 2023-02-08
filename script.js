@@ -1,16 +1,18 @@
 "use strict";
 // global variabal
-let main_h = document.getElementById("main_h");
-let main_p = document.getElementById("main_p");
 let click_My = document.querySelector(".clickMy");
 let portfolio_cont = document.querySelector(".portfolio-cont");
 //// for remove all active class
-function handelActive(eles, e) {
+function removeActiveOnly(eles) {
   eles.forEach((ele) => {
     ele.classList.remove("active");
   });
+}
+function handelActive(eles, e) {
+  removeActiveOnly(eles);
   e.target.classList.add("active");
 }
+
 //
 // tool bar
 let toolBar = document.querySelector(".tool-bar");
@@ -77,13 +79,32 @@ function randomBg() {
 }
 randomBg();
 //side bar option
+// get from localStorage
+let sideBarContainer = document.querySelector(".side-bar");
 let spanSD = document.querySelectorAll(".sideCont span");
+if (localStorage.getItem("side-bar") === "yes") {
+  sideBarContainer.classList.remove("hidden");
+  removeActiveOnly(spanSD);
+  document.querySelector(".sideCont .yes").classList.add("active");
+} else {
+  sideBarContainer.classList.add("hidden");
+  removeActiveOnly(spanSD);
+  document.querySelector(".sideCont .no").classList.add("active");
+}
+
 spanSD.forEach((span) => {
   // span.classList.remove("active");
   span.onclick = function (e) {
     //remove active
     handelActive(spanSD, e);
-    sideBarContainer.classList.toggle("hidden");
+
+    if (span.classList.contains("yes")) {
+      sideBarContainer.classList.remove("hidden");
+      localStorage.setItem("side-bar", "yes");
+    } else {
+      sideBarContainer.classList.add("hidden");
+      localStorage.setItem("side-bar", "no");
+    }
   };
 });
 
@@ -155,7 +176,6 @@ panels.forEach((panel) => {
 });
 //flag
 //side bar
-let sideBarContainer = document.querySelector(".side-bar");
 let allSection = document.querySelectorAll("body > .section");
 allSection.forEach((ele) => {
   let sideBox = document.createElement("div");
@@ -171,4 +191,3 @@ allSection.forEach((ele) => {
     });
   });
 });
-//side bar

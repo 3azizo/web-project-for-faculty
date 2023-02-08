@@ -9,7 +9,6 @@
   --mainColor: #00cccc;
   --bg-color: #fff;
 }
-
 /* font import */
 @font-face {
   src: url(../fonts/FiraSans-Black.ttf);
@@ -198,12 +197,12 @@ body {
   margin-right: auto;
 }
 /* nav here */
-nav {
+header {
   z-index: 10;
   width: 100%;
   background-color: #000000;
 }
-nav .container {
+header .container {
   display: flex;
 }
 .links {
@@ -211,7 +210,7 @@ nav .container {
   display: flex;
   text-align: center;
 }
-nav ul {
+header ul {
   width: 100%;
   list-style: none;
   display: flex;
@@ -219,7 +218,7 @@ nav ul {
   align-items: center;
 }
 
-nav a {
+header a {
   display: inline-block;
   font-size: 20px;
   text-decoration: none;
@@ -666,7 +665,8 @@ footer span {
     align-items: center;
     width: 100%;
   }
-  a {
+  a,
+  .inf .social {
     font-size: 15px;
   }
   form {
