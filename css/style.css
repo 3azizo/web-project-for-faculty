@@ -238,8 +238,7 @@ header a {
   padding: 15px;
   transition: 0.3s;
 }
-a.active_a {
-  z-index: 10;
+header a.active {
   color: var(--mainColor);
 }
 a:hover {
@@ -470,7 +469,7 @@ p {
   transition: flex 0.7s ease-in;
   margin: 10px;
 }
-h3 {
+.panel h3 {
   color: var(--mainColor);
   font-size: 24px;
   position: absolute;
@@ -584,6 +583,58 @@ h3 {
     font-size: 25px;
   }
 }
+/* random img */
+.random_img .random_cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+.random_img #randomHeader {
+  margin: 20px 0;
+  font-size: 50px;
+  font-family: head-font;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 5px;
+  /*  */
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    var(--mainColor) 100%
+  );
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  /* text-fill-color: transparent; */
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: block;
+}
+@media (max-width: 768px) {
+  .random_img #randomHeader {
+    font-size: 20px;
+  }
+}
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.random_img img {
+  object-fit: cover;
+  margin: 10px;
+  height: 300px;
+  width: 300px;
+  max-width: 100%;
+}
+
+/* random img */
 footer {
   background-color: var(--mainColor);
   color: white;
@@ -657,6 +708,9 @@ footer span {
 @media (max-width: 768px) {
   .dropdown-content {
     right: -2px;
+  }
+  header a {
+    font-size: 15px;
   }
   .modal {
     width: 100%;

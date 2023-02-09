@@ -46,6 +46,13 @@
           </div>
         </div>
         <div class="option-box">
+          <h4>Navbar</h4>
+          <div class="Navbar_option">
+            <span class="yes active" data-bg="yes">yes</span>
+            <span class="no" data-bg="no">no</span>
+          </div>
+        </div>
+        <div class="option-box">
           <h4>for mode</h4>
           <i class="fa-sharp fa-solid fa-moon mode"></i>
         </div>
@@ -55,9 +62,10 @@
       <div class="container">
         <div class="links">
           <ul>
-            <li><a href="#home" class="active_a"> Home</a></li>
-            <li><a href="#portfolio">pictures</a></li>
-            <li><a href="#flag">country</a></li>
+            <li><a href="#home" class="active"> Home</a></li>
+            <li><a href="#portfolio">Pictures</a></li>
+            <li><a href="#flag">Country</a></li>
+            <li><a href="#random">Random</a></li>
             <li>
               <div class="dropdown">
                 <button class="other">other</button>
@@ -155,8 +163,16 @@
         <span>testtt</span>
       </div> -->
     </div>
+    <!-- random img -->
+    <div class="random_img section" id="random">
+      <h3 id="randomHeader">Random image section</h3>
+      <div class="random_cont"></div>
+    </div>
+
+    <!-- random img -->
+
     <!-- contact -->
-    <div class="contact section" id="contact">
+    <div class="contact" id="contact">
       <div class="container">
         <div class="inf">
           <div class="social">
@@ -177,9 +193,45 @@
     <script src="jquery-3.6.1.min.js"></script>
     <script src="script.js"></script>
     <script>
+      function removeActiveOnly(eles) {
+        eles.forEach((ele) => {
+          ele.classList.remove("active");
+        });
+      }
+      let spanNavOption = document.querySelectorAll(".Navbar_option span");
+      // for use headroom
       let header = document.getElementById("header");
       let headroom = new Headroom(header);
       headroom.init();
+
+      //get data from localStorage
+      if (localStorage.getItem("navOption") === "yes") {
+        headroom.unfreeze();
+        removeActiveOnly(spanNavOption);
+        document.querySelector(".Navbar_option .yes").classList.add("active");
+      } else {
+        headroom.freeze();
+        removeActiveOnly(spanNavOption);
+        document.querySelector(".Navbar_option .no").classList.add("active");
+      }
+
+      //add event to span to take action
+      spanNavOption.forEach((ele) => {
+        ele.addEventListener("click", (e) => {
+          //to handel class active
+          removeActiveOnly(spanNavOption);
+          e.target.classList.add("active");
+
+          // to make action
+          if (ele.classList.contains("yes")) {
+            headroom.unfreeze();
+            localStorage.setItem("navOption", "yes");
+          } else {
+            headroom.freeze();
+            localStorage.setItem("navOption", "no");
+          }
+        });
+      });
     </script>
   </body>
 </html>

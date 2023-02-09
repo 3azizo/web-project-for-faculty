@@ -55,7 +55,7 @@ spanBG.forEach((span) => {
   span.onclick = function (e) {
     //remove active
     handelActive(spanBG, e);
-    //
+
     if (span.dataset.bg == "yes") {
       backgroundOption = true;
       randomBg();
@@ -73,6 +73,7 @@ function randomBg() {
     clearKey = setInterval(function () {
       let randomNum = Math.floor(Math.random() * 17);
       let img = `img/random/random${randomNum + 1}.jpg`;
+
       document.querySelector("#home").style.backgroundImage = `url(${img})`;
     }, 10000);
   }
@@ -132,16 +133,20 @@ const openModal = function () {
 };
 
 let eventEx = true; //to execution event one time
+
 click_My.addEventListener("click", function () {
   if (eventEx) {
     let imgarr = [];
+
     // for render img
     for (let i = 0; i < 18; i++) {
       let img = `img/random/random${i + 1}.jpg`;
       let newCard = document.createElement("div");
+
       newCard.classList.add("card");
       // newCard.classList.add(`cr${i + 1}`);
       newCard.innerHTML = `<img src="${img}">`;
+
       imgarr.push(newCard.innerHTML);
       portfolio_cont.appendChild(newCard);
     }
@@ -151,6 +156,7 @@ click_My.addEventListener("click", function () {
       img_cr[j].addEventListener("click", function () {
         openModal();
         img_modal.innerHTML = imgarr[j];
+
         window.document.addEventListener("keydown", (e) => {
           if (e.key === "Escape") {
             closeModal();
@@ -180,14 +186,64 @@ let allSection = document.querySelectorAll("body > .section");
 allSection.forEach((ele) => {
   let sideBox = document.createElement("div");
   sideBox.classList = "side-box";
+  sideBox.dataset.id = ele.id;
+
   let spanInSide = document.createElement("span");
   spanInSide.textContent = `${ele.id}`;
   sideBox.appendChild(spanInSide);
+
   sideBarContainer.appendChild(sideBox);
   sideBox.addEventListener("click", (e) => {
     handelActive(document.querySelectorAll(".side-box"), e);
+
     document.querySelector(`#${ele.id}`).scrollIntoView({
       behavior: "smooth",
     });
+  });
+});
+
+const container = document.querySelector(".random_img .random_cont");
+const unsplashURL = "https://source.unsplash.com/random/";
+const rows = 10;
+
+for (let i = 0; i < rows * 3; i++) {
+  const img = document.createElement("img");
+  img.src = `${unsplashURL}${getRandomSize()}`;
+  container.appendChild(img);
+}
+
+function getRandomSize() {
+  return `${getRandomNr()}x${getRandomNr()}`;
+}
+
+function getRandomNr() {
+  return Math.floor(Math.random() * 10) + 300;
+}
+
+//
+//allSection
+let menu = document.querySelectorAll("header .links a");
+window.addEventListener("scroll", () => {
+  allSection.forEach((ele) => {
+    let top = window.scrollY;
+    let offset = ele.offsetTop - 150;
+    let height = ele.offsetHeight;
+    let id = ele.getAttribute("id");
+
+    if (top >= offset && top < offset + height) {
+      menu.forEach((link) => {
+        //navbar
+        link.classList.remove("active");
+        document
+          .querySelector("header .links a[href*=" + id + "]")
+          .classList.add("active");
+
+        //side bar
+        removeActiveOnly(document.querySelectorAll(".side-box"));
+        document
+          .querySelector(".side-box[data-id*=" + id + "]")
+          .classList.add("active");
+      });
+    }
   });
 });
