@@ -98,7 +98,6 @@ spanSD.forEach((span) => {
   span.onclick = function (e) {
     //remove active
     handelActive(spanSD, e);
-
     if (span.classList.contains("yes")) {
       sideBarContainer.classList.remove("hidden");
       localStorage.setItem("side-bar", "yes");
@@ -194,7 +193,7 @@ allSection.forEach((ele) => {
 
   sideBarContainer.appendChild(sideBox);
   sideBox.addEventListener("click", (e) => {
-    handelActive(document.querySelectorAll(".side-box"), e);
+    // handelActive(document.querySelectorAll(".side-box"), e);
 
     document.querySelector(`#${ele.id}`).scrollIntoView({
       behavior: "smooth",
