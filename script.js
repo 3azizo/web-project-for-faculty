@@ -27,6 +27,7 @@ const colorLi = document.querySelectorAll(".colors-list li");
 // get color from local Storage
 if (localStorage.getItem("mainColor")) {
   let mainColor = localStorage.getItem("mainColor");
+
   document.documentElement.style.setProperty("--mainColor", mainColor);
   colorLi.forEach((li) => {
     li.classList.remove("active");
@@ -83,6 +84,7 @@ randomBg();
 // get from localStorage
 let sideBarContainer = document.querySelector(".side-bar");
 let spanSD = document.querySelectorAll(".sideCont span");
+
 if (localStorage.getItem("side-bar") === "yes") {
   sideBarContainer.classList.remove("hidden");
   removeActiveOnly(spanSD);
@@ -208,6 +210,7 @@ const rows = 10;
 for (let i = 0; i < rows * 3; i++) {
   const img = document.createElement("img");
   img.src = `${unsplashURL}${getRandomSize()}`;
+  img.alt = `${unsplashURL}`;
   container.appendChild(img);
 }
 
