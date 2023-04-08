@@ -5,6 +5,58 @@
   margin: 0;
   padding: 0;
 }
+.loading {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  z-index: 100;
+  transition: all 0.5s;
+}
+.bouncer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 100px;
+  height: 100px;
+}
+.bouncer div {
+  width: 20px;
+  height: 20px;
+  background-color: var(--mainColor);
+  border-radius: 50%;
+  animation: bouncer 0.5s cubic-bezier(0.19, 0.57, 0.3, 0.98) infinite alternate;
+}
+
+.bouncer div:nth-child(2) {
+  animation-delay: 0.1s;
+  opacity: 0.8;
+}
+
+.bouncer div:nth-child(3) {
+  animation-delay: 0.2s;
+  opacity: 0.6;
+}
+
+.bouncer div:nth-child(4) {
+  animation-delay: 0.3s;
+  opacity: 0.4;
+}
+
+@keyframes bouncer {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100px);
+  }
+}
+
 :root {
   --mainColor: #00cccc;
   --bg-color: #fff;
@@ -647,11 +699,16 @@ footer span {
 }
 /* contact and footer */
 /* test */
-
+body > .section {
+  transition: transform 1s, opacity 1s;
+}
 .hidden {
   display: none;
 }
-
+.scroll-animation {
+  transform: translateY(8rem);
+  opacity: 0;
+}
 .modal {
   position: fixed;
   top: 50%;

@@ -2,6 +2,8 @@
 // global variabal
 let click_My = document.querySelector(".clickMy");
 let portfolio_cont = document.querySelector(".portfolio-cont");
+// tool bar
+let toolBar = document.querySelector(".tool-bar");
 //// for remove all active class
 function removeActiveOnly(eles) {
   eles.forEach((ele) => {
@@ -14,8 +16,7 @@ function handelActive(eles, e) {
 }
 
 //
-// tool bar
-let toolBar = document.querySelector(".tool-bar");
+
 // for see tool box
 document.querySelector(".toggle-settings i").onclick = function () {
   this.classList.toggle("fa-spin");
@@ -221,7 +222,6 @@ function getRandomSize() {
 function getRandomNr() {
   return Math.floor(Math.random() * 10) + 300;
 }
-
 //
 //allSection
 let menu = document.querySelectorAll("header .links a");
@@ -239,7 +239,6 @@ window.addEventListener("scroll", () => {
         document
           .querySelector("header .links a[href*=" + id + "]")
           .classList.add("active");
-
         //side bar
         removeActiveOnly(document.querySelectorAll(".side-box"));
         document
@@ -248,4 +247,26 @@ window.addEventListener("scroll", () => {
       });
     }
   });
+});
+// loading animation
+let loadingContainer = document.querySelector(".loading");
+window.addEventListener("load", () => {
+  loadingContainer.classList.add("hidden");
+});
+//
+//reveal section
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove("scroll-animation");
+  observer.unobserve(entry.target);
+  // const
+};
+const sectionObesver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.1,
+});
+allSection.forEach((sec) => {
+  sectionObesver.observe(sec);
+  sec.classList.add("scroll-animation");
 });
