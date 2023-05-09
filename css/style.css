@@ -6,11 +6,11 @@
   padding: 0;
 }
 .loading {
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,6 +91,7 @@
   top: 50%;
   transform: translateY(-50%);
   right: 20px;
+  z-index: 100000;
 }
 .side-bar.hidden {
   display: none;
@@ -461,6 +462,11 @@ p {
   }
 }
 /* random_img */
+.random_img {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+}
 .portfolio {
   padding-top: 60px;
   padding-bottom: 60px;
