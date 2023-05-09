@@ -6,6 +6,7 @@ let portfolio_cont = document.querySelector(".portfolio-cont");
 let toolBar = document.querySelector(".tool-bar");
 let colorLi = document.querySelectorAll(".colors-list li");
 let spanBG = document.querySelectorAll(".randomBack span");
+let allSection = document.querySelectorAll("body > .section");
 
 //// for remove all active class
 function removeActiveOnly(eles) {

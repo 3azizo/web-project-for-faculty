@@ -64,7 +64,6 @@ function randomBg() {
 randomBg();
 
 // option 3: side bar
-let allSection = document.querySelectorAll("body > .section");
 allSection.forEach((ele) => {
   let sideBox = document.createElement("div");
   sideBox.classList = "side-box";
